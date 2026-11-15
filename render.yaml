@@ -1,0 +1,32 @@
+# Render Blueprint: dashboard.render.com -> New -> Blueprint -> pick this repo.
+services:
+  - type: web
+    name: dukaan-saathi
+    runtime: docker
+    plan: free
+    region: singapore
+    rootDir: dukaan-saathi
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      # Judges' demo: OTP is shown on screen (no SMS needed); sample shops log in with 9876500001/2/3.
+      - key: SMS_PROVIDER
+        value: console
+      - key: DEV_OTP_ECHO
+        value: "true"
+      - key: LLM_PROVIDER
+        value: openai
+      - key: OPENAI_MODEL
+        value: gpt-5.4-mini
+      - key: LLM_MODE
+        value: llm_first
+      - key: LLM_DAILY_REQUESTS
+        value: "60"
+      # Secrets: Render asks for these when the Blueprint is created (leave any blank to use the fallback).
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
