@@ -1,0 +1,4 @@
+.DS_Store
+*.tsbuildinfo
+# old copy of the frontend kept locally before the Paytm-style redesign
+dukaan-saathi/src-backup-before-paytm-ui/
